@@ -1,0 +1,21 @@
+- Pause program while the window is not focused?
+- Debug markers for sound (delay, avail, pointers, timestamps)
+- Input: Cross frame values, half transition count and average.j
+- Sound: Lagfree playback + recovery after live reload
+- Replay: use mremap(3) and memory backed file for faster writing 
+- Replay: Multiple slots
+- x11: fullscreen
+- x11: hide decorations on other DEs.
+x Input: Detect new controllers / disconnects.
+x Hide cursor
+x Replay
+x Sound (Play sinewave)
+x Hot reload
+x Gamepad Input
+x Get Refresh rate
+x Keyboard Input
+x Timing
+x File IO
+x input: IsConnected bug: if checking on the property the inputs will be played multiple times.
+- Load libasound.so at runtime
+- statically link alsalib and xlib
