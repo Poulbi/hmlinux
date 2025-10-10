@@ -1,0 +1,50 @@
+- Pause program while the window is not focused?
+- Debug markers for sound (delay, avail, pointers, timestamps)
+- Sound: Lagfree playback + recovery after live reload
+- Replay: faster LinuxBeginRecordingInput() + memory mapped file. 
+- Better memory sparseness by using growing virtual memory where when the page is touched it is allocated.  (reserved but not committed).
+- Get rid of libasound.so & xlib
+  - or load it at runtime
+  - or link statically
+- Fix fullscreen showing old contents after resize
+  - Fill the new size with background_pixel color
+  - Draw borders around the content 
+- Dynamic resizing
+  - Or resize when fullscreen
+- Mouse polling is not fast enough for dragging.
+  - Be able to have a debug version of mouse polling where you can see each a line of where the mouse was.
+- XPutImage takes 5ms, we could speed it up by using (https://stackoverflow.com/questions/61212999/is-it-possible-to-reduce-the-draw-delay-in-this-x11-program).
+
+
+
+x Own printf implementation for debugging using stb_sprintf
+x Toggle fullscreen
+x Threading
+x Input: Cross frame values, half transition count and average.
+x Replay: Multiple slots
+x Input: Detect new controllers / disconnects.
+x Hide cursor
+x Replay
+x Hot reload
+x Gamepad Input
+x Get Refresh rate
+x Keyboard Input
+x Timing
+x File IO
+x input: IsConnected bug: if checking on the property the inputs will be played multiple times.
+x Sound (Play sinewave)
+
+To fix the issue of updating from multiple projects to the server we clone only once
+and in projects we do the submodule off the filesystem.
+
+  We need to make it so changes are updated automatically.
+
+  Install a post-commit hook in the project's submodule that:
+  1. -> Pushes the changes to the filesystem repo
+
+  Install a post-receive hook in the filesystem repository that:
+  1. -> Pushes the changes to the server repo
+  2. -> Saves the repo it's coming from if it is new
+  3. -> Push the changes to all projects saved
+
+  So we create a install.sh script.
