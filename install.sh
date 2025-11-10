@@ -1,10 +1,11 @@
+#!/bin/sh
 
 CurrentDir="$(readlink -f ".")"
 
 ScriptDir="$(dirname "$(readlink -f "$0")")"
 cd "$ScriptDir"
 
-Dir="$CurrentDir/linuxhmh"
+Dir="$CurrentDir/${ScriptDir##*/}"
 rm -rf "$Dir"
 mkdir "$Dir"
   
