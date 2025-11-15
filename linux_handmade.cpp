@@ -1842,5 +1842,6 @@ TODO
     {
         // TODO: Log could not get x connection 
     }
+    
     return 0;
 }

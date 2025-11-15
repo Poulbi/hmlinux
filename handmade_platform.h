@@ -22,29 +22,52 @@ extern "C" {
 #include <stdint.h>
 #include <stddef.h>
     
+    // Zero
 #if !defined(COMPILER_MSVC)
-#define COMPILER_MSVC 0
+# define COMPILER_MSVC 0
 #endif
-    
 #if !defined(COMPILER_LLVM)
-#define COMPILER_LLVM 0
+# define COMPILER_LLVM 0
 #endif
-    
 #if !defined(COMPILER_GNU)
-#define COMPILER_GNU 0
+# define COMPILER_GNU 0
 #endif
     
-#if !COMPILER_MSVC && !COMPILER_LLVM && !COMPILER_GNU
-#if _MSC_VER
-#undef COMPILER_MSVC
-#define COMPILER_MSVC 1
+    // Detect compiler
+#if __clang__
+# undef COMPILER_CLANG
+# define COMPILER_CLANG 1
+#elif _MSC_VER
+# undef COMPILER_MSVC
+# define COMPILER_MSVC 1
 #elif __GNUC__
-#undef COMPILER_GNU
-#define COMPILER_GNU 1 
+# undef COMPILER_GNU
+# define COMPILER_GNU 1
 #else
-    // TODO(casey): More compilerz!!!
+# error "Could not detect compiler."
 #endif
-#endif 
+    
+#if __MINGW32__
+# define COMPILER_MINGW 1
+#endif
+    
+    // Push/Pop warnings
+#if defined(COMPILER_GNU)
+# define PUSH_WARNINGS \
+_Pragma("GCC diagnostic push") \
+_Pragma("GCC diagnostic ignored \"-Weverything\"") \
+_Pragma("GCC diagnostic ignored \"-Wconversion\"")
+# define POP_WARNINGS _Pragma("GCC diagnostic pop")
+    
+#elif defined(COMPILER_CLANG)
+# define PUSH_WARNINGS \
+_Pragma("clang diagnostic push") \
+_Pragma("clang diagnostic ignored \"-Weverything\"")
+# define POP_WARNINGS _Pragma("clang diagnostic pop")
+    
+#else
+# error "No compatible compiler found"
+#endif
     
 #define internal static 
 #define local_persist static 
