@@ -1656,7 +1656,7 @@ main(int ArgC, char *Args[])
                         }
                         
                         
-                        /* NOTE(luca): How sound works
+                        /* NOTE(luca): How sound (should) work(s)
 
 Check the delay
 Check the available frames in buffer

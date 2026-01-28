@@ -4,7 +4,7 @@ Should work until day 52.
 
 ## Installation
 You can run the installation script.
-This will create a `hm_linux` directory with all library files in the current directory.
+This will create a `hm_linux` directory in the current directory with all the library files.
 ```sh
 ./install.sh
 ```

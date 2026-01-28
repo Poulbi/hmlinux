@@ -33,18 +33,3 @@ x Timing
 x File IO
 x input: IsConnected bug: if checking on the property the inputs will be played multiple times.
 x Sound (Play sinewave)
-
-To fix the issue of updating from multiple projects to the server we clone only once
-and in projects we do the submodule off the filesystem.
-
-  We need to make it so changes are updated automatically.
-
-  Install a post-commit hook in the project's submodule that:
-  1. -> Pushes the changes to the filesystem repo
-
-  Install a post-receive hook in the filesystem repository that:
-  1. -> Pushes the changes to the server repo
-  2. -> Saves the repo it's coming from if it is new
-  3. -> Push the changes to all projects saved
-
-  So we create a install.sh script.
